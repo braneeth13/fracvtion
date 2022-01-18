@@ -81,6 +81,13 @@ fraction fract = (fraction) num;
 		return new fraction(n/gcf,d/gcf);
 	}
 	
+	public int getNumerator() {
+		return n;
+	}
+	public int getDenominator() {
+		return d;
+	}
+	
 	@Override
 	public String toString() {
 		return n + " / " + d;
