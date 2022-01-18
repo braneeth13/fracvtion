@@ -1,4 +1,4 @@
- import javax.swing.*;
+import javax.swing.*;
 import BreezySwing.*;
 
 
@@ -15,10 +15,17 @@ public class mainFractionComplex extends GBFrame{
 	    IntegerField num2 = addIntegerField(0, 2, 5, 1,1);
 	    IntegerField denom2 = addIntegerField(0, 3, 5, 1,1);
 	   
-	//complex numbers input
-	    JLabel numerator1label      = addLabel ("Operations w/ fractions", 6,1,1,1);
-	    JTextField complex1 = addTextField("Complex 1", 7, 1, 1,1);
-	    JTextField complex2 = addTextField("Complex 2", 9, 1, 1,1);
+	
+	    //complex numbers input
+	    JLabel complex1      = addLabel ("Complex1", 6,2,1,1);
+	    JLabel complex2      = addLabel ("Complex2", 6,5,1,1);
+	    JTextField complex1a = addTextField("a", 7, 1, 1,0);
+	    JTextField complex1b = addTextField("b", 7, 2, 1,1);
+	    JLabel i1 = addLabel("i", 7, 3, 1, 1);
+	    
+	    JTextField complex2a = addTextField("c", 7, 4, 1,1);
+	    JTextField complex2b = addTextField("d", 7, 5, 1,1);
+	    JLabel i2 = addLabel("i", 7, 6, 1, 1);
 	   
 	//Buttons
 	    JButton addFrac = addButton("Add", 5, 1, 1, 1);
@@ -33,34 +40,106 @@ public class mainFractionComplex extends GBFrame{
 	    	    
 	    public void buttonClicked(JButton buttonObj){
 	    	if(buttonObj == addFrac) {
-	    		fraction frac1 = new fraction(num1.getNumber(),denom1.getNumber());
-	    		fraction frac2 = new fraction(num2.getNumber(),denom2.getNumber());
+	    		
+	    		if(!errorCheck(denom1.getNumber()) || !errorCheck(denom2.getNumber())) {
+	    			messageBox("Error: 0 in denominator");
+	    		} else {
+	    			fraction frac1 = new fraction(num1.getNumber(),denom1.getNumber());
+		    		fraction frac2 = new fraction(num2.getNumber(),denom2.getNumber());
+		    		
+		    		
+		    		fraction frac3 = (fraction) frac1.add(frac2);
+		    		frac3 = frac3.simplify();
+		    		
+		    		if(frac3.getNumerator()==0) {
+		    			messageBox("0");
+		    		}else if(frac3.getDenominator()==1) {
+		    			messageBox("" + frac3.getNumerator());
+		    		} else {
+		    			messageBox(frac3, 300, 200);
+		    		}
+	    		}
 	    		
 	    		
-	    		fraction frac3 = (fraction) frac1.add(frac2);
-	    		frac3 = frac3.simplify();
-	    		messageBox(frac3, 300, 200);
+	    		
+	    		
 	    		
 	    	}
-	    	if(buttonObj == addFrac) {
-	    		fraction frac1 = new fraction(num1.getNumber(),denom1.getNumber());
-	    		fraction frac2 = new fraction(num2.getNumber(),denom2.getNumber());
+	    	if(buttonObj == subtractFrac) {
+	    		if(!errorCheck(denom1.getNumber()) || !errorCheck(denom2.getNumber())) {
+	    			messageBox("Error: 0 in denominator");
+	    		} else {
+	    			fraction frac1 = new fraction(num1.getNumber(),denom1.getNumber());
+		    		fraction frac2 = new fraction(num2.getNumber(),denom2.getNumber());
+		    		
+		    		
+		    		fraction frac3 = (fraction) frac1.subtract(frac2);
+		    		frac3 = frac3.simplify();
+		    		
+		    		if(frac3.getNumerator()==0) {
+		    			messageBox("0");
+		    		}else if(frac3.getDenominator()==1) {
+		    			messageBox("" + frac3.getNumerator());
+		    		} else {
+		    			messageBox(frac3, 300, 200);
+		    		}
+	    		}
 	    		
 	    		
-	    		fraction frac3 = (fraction) frac1.add(frac2);
-	    		frac3 = frac3.simplify();
-	    		messageBox(frac3, 300, 200);
+	    		
 	    		
 	    	}
 	    	
 	    	if(buttonObj == multiplyFrac) {
-	    		fraction frac1 = new fraction(num1.getNumber(),denom1.getNumber());
-	    		fraction frac2 = new fraction(num2.getNumber(),denom2.getNumber());
+	    		if(!errorCheck(denom1.getNumber()) || !errorCheck(denom2.getNumber())) {
+	    			messageBox("Error: 0 in denominator");
+	    		} else {
+	    			fraction frac1 = new fraction(num1.getNumber(),denom1.getNumber());
+		    		fraction frac2 = new fraction(num2.getNumber(),denom2.getNumber());
+		    		
+		    		
+		    		fraction frac3 = (fraction) frac1.multiply(frac2);
+		    		frac3 = frac3.simplify();
+		    		
+		    		if(frac3.getNumerator()==0) {
+		    			messageBox("0");
+		    		}else if(frac3.getDenominator()==1) {
+		    			messageBox("" + frac3.getNumerator());
+		    		} else {
+		    			messageBox(frac3, 300, 200);
+		    		}
+		    		
+	    		}
 	    		
 	    		
-	    		fraction frac3 = (fraction) frac1.multiply(frac2);
-	    		frac3 = frac3.simplify();
-	    		messageBox(frac3, 300, 200);
+	    	}
+	    	
+	    	if(buttonObj == divideFrac) {
+	    		if(!errorCheck(denom1.getNumber()) || !errorCheck(num2.getNumber())) {
+	    			messageBox("Error: 0 in denominator");
+	    			
+	    		} else {
+	    			fraction frac1 = new fraction(num1.getNumber(),denom1.getNumber());
+		    		fraction frac2 = new fraction(num2.getNumber(),denom2.getNumber());
+		    		
+		    		
+		    		fraction frac3 = (fraction) frac1.multiply(frac2);
+		    		frac3 = frac3.simplify();
+		    		
+		    		if(frac3.getNumerator()==0) {
+		    			messageBox("0");
+		    		}else if(frac3.getDenominator()==1) {
+		    			messageBox("" + frac3.getNumerator());
+		    		} else {
+		    			messageBox(frac3, 300, 200);
+		    		}
+		    		
+	    		}
+	    		
+	    		
+	    	}
+	    	
+	    	if(buttonObj == addComp) {
 	    		
 	    	}
 	    	
@@ -73,7 +152,12 @@ public class mainFractionComplex extends GBFrame{
 	    }
 	    
 	   
-
+	    public boolean errorCheck(int denominator) {
+	    	if(denominator == 0) {
+	    		return false;
+	    	}
+	    	return true;
+	    }
 	    
 
 
