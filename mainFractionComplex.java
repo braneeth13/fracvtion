@@ -33,9 +33,34 @@ public class mainFractionComplex extends GBFrame{
 	    	    
 	    public void buttonClicked(JButton buttonObj){
 	    	if(buttonObj == addFrac) {
-	    		fraction frac = new fraction(num1.getNumber(), num2.getNumber());
+	    		fraction frac1 = new fraction(num1.getNumber(),denom1.getNumber());
+	    		fraction frac2 = new fraction(num2.getNumber(),denom2.getNumber());
 	    		
 	    		
+	    		fraction frac3 = (fraction) frac1.add(frac2);
+	    		frac3 = frac3.simplify();
+	    		messageBox(frac3, 300, 200);
+	    		
+	    	}
+	    	if(buttonObj == addFrac) {
+	    		fraction frac1 = new fraction(num1.getNumber(),denom1.getNumber());
+	    		fraction frac2 = new fraction(num2.getNumber(),denom2.getNumber());
+	    		
+	    		
+	    		fraction frac3 = (fraction) frac1.add(frac2);
+	    		frac3 = frac3.simplify();
+	    		messageBox(frac3, 300, 200);
+	    		
+	    	}
+	    	
+	    	if(buttonObj == multiplyFrac) {
+	    		fraction frac1 = new fraction(num1.getNumber(),denom1.getNumber());
+	    		fraction frac2 = new fraction(num2.getNumber(),denom2.getNumber());
+	    		
+	    		
+	    		fraction frac3 = (fraction) frac1.multiply(frac2);
+	    		frac3 = frac3.simplify();
+	    		messageBox(frac3, 300, 200);
 	    		
 	    	}
 	    	
@@ -49,7 +74,10 @@ public class mainFractionComplex extends GBFrame{
 	    
 	   
 
-	    public static void main(String[] args){
+	    
+
+
+		public static void main(String[] args){
 	    	
 	        JFrame frm = new mainFractionComplex();
 	        frm.setTitle ("Calculator");
