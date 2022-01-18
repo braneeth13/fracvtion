@@ -1,55 +1,89 @@
 public class fraction implements number {
-	private int n1;
-	private int d1;
+	private int n;
+	private int d;
 	
-	private int n2;
-	private int d2;
+	
 	
 	
 	
 	public fraction() {
-		this.n1=0;
-		this.n2=0;
+		this.n=0;
+		this.d=01;
+	
 	}
 	
-	public fraction(int n1, int d1, int n2, int d2) {
-		this.n1=n1;
-		this.d1=d1;
-		this.n2=n2;
-		this.d2=d2;
+	public fraction(int n, int d) {
+		this.n=n;
+		this.d=d;
+		
 	}
-	
-	
-	static int gcd(int a, int b) 
-	{ 
-	    if (a == 0) 
-	        return b; 
-	    return gcd(b%a, a); 
-	} 
 	
 
 	
 	@Override
 	public number add(number num) {
-		return null;
+		
+		fraction fract = (fraction) num;
+		
+		int denominator = d*fract.d;
+		
+		int numerator = n*fract.d + fract.n*d ;
+		
+		return new fraction(numerator, denominator);
 	}
 
 	@Override
 	public number subtract(number num) {
-		// TODO Auto-generated method stub
-		return null;
+fraction fract = (fraction) num;
+		
+		int denominator = d*fract.d;
+		
+		int numerator = n*fract.d - fract.n*d ;
+		
+		return new fraction(numerator, denominator);
 	}
 
 	@Override
 	public number multiply(number num) {
-		// TODO Auto-generated method stub
-		return null;
+		int numerator;
+		int denominator;
+		
+		fraction fract = (fraction) num;
+		
+		numerator = n*fract.n;
+		denominator = d*fract.d;
+		
+		return new fraction(numerator, denominator);
 	}
 
 	@Override
 	public number divide(number num) {
-		// TODO Auto-generated method stub
-		return null;
+		int numerator;
+		int denominator;
+		
+		fraction fract = (fraction) num;
+		
+		numerator = n*fract.d;
+		denominator = d*fract.n;
+		
+		return new fraction(numerator, denominator);
+	}
+	
+	public fraction simplify() {
+		int small  = Math.min(n,d);
+		int gcf = 1;
+		for(int i=small; i>0;i--) {
+			if(n%i == 0 && d%i==0) {
+				gcf = i;
+				break;
+			}
+		}
+		return new fraction(n/gcf,d/gcf);
+	}
+	
+	@Override
+	public String toString() {
+		return n + " / " + d;
 	}
 
 }
