@@ -1,3 +1,4 @@
+
 public class fraction implements number {
 	private int n;
 	private int d;
@@ -13,8 +14,15 @@ public class fraction implements number {
 	}
 	
 	public fraction(int n, int d) {
+		if(d==0) {
+			
+			throw new ArithmeticException("Cannot have 0 in denominator");
+		}
+		
 		this.n=n;
 		this.d=d;
+		
+		
 		
 	}
 	
@@ -70,10 +78,12 @@ fraction fract = (fraction) num;
 	}
 	
 	public fraction simplify() {
-		int small  = Math.min(n,d);
+		int n1 = Math.abs(n);
+		int d1 = Math.abs(d);
+		int small  = Math.min(n1,d1);
 		int gcf = 1;
 		for(int i=small; i>0;i--) {
-			if(n%i == 0 && d%i==0) {
+			if(n1%i == 0 && d1%i==0) {
 				gcf = i;
 				break;
 			}
@@ -90,7 +100,27 @@ fraction fract = (fraction) num;
 	
 	@Override
 	public String toString() {
-		return n + " / " + d;
+		
+		if(n<0 && d<0) {
+			n=Math.abs(n);
+			d=Math.abs(d);
+		}
+		
+		if(n==0) {
+			return "0";
+			
+		} else if(d==1) {
+			return n + "";
+			
+		} else if(d ==- 1){
+			return n*-1 + "";
+			
+		}else {
+			
+
+			return n + " / " + d;
+		}
+		
 	}
 
 }
